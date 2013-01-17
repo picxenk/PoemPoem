@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="utf-8" />
+    <script src="js/thunder.js"></script>
+    <script type="text/javascript">
+        Th.init();
+
+        var ThDemo={
+            sineFunc:function(si, len,  frq, chn, opt) {
+                // used to fade out, to avoid an abrupt chop off of the wave, which causes a click.
+                var fad=Math.min(1,(opt.sustain || 1)*(len-si)/len); 
+                return Math.floor(fad*128*256*(
+                    Math.sin(2.0 * Math.PI * frq * si  / 44100)
+                ));            
+            }
+        };
+        ThDemo.sequenceSimple=function(arg) {
+            var sequence = document.getElementById('sequence').value;
+            if(Th.Inst.get("InstSimple")==null) {
+                Th.Inst.create("InstSimple",ThDemo.sineFunc);
+            }
+            var score="close encounters: d=4,o=4,b=120: d, e, c, 8p, c3., 8p, 2g3";
+            if (!sequence) sequence = score;
+            Th.Sequence.create("CE Sine","InstSimple",sequence).play();
+        }
+        ThDemo.instSimple=function(arg) {
+            var note = document.getElementById('note').value;
+            if(Th.Inst.get("InstSimple")==null) { //avoid recreating a bunch of times
+                Th.Inst.create("InstSimple",ThDemo.sineFunc);
+            }
+            Th.Inst.get("InstSimple").getSound(note).play();
+        }
+    </script>
+</head>
+<body>
+<h2>Demo 01</h2>
+    <p>
+    <input id="sequence" type="text" size="20" value="d, e, c, 8p, c3., 8p, 2g3"/>
+    <button onclick="ThDemo.sequenceSimple()">play</button> A simple sequence.
+    </p>
+<h2>Demo 02</h2>
+    <p>
+    <input id="note" type="text" size="10"/>
+    <button onclick="ThDemo.instSimple()">play</button> 
+    </p>
+</body>
+</html>
