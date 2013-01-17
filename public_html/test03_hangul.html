@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="utf-8" />
+    <script src="js/hangul.js"></script>
+    <script type="text/javascript">
+        var charCode = function(aChar) {
+            return aChar.charCodeAt();
+        };
+
+        var splitHangul = function() {
+            var hanString = document.getElementById("hangul_string").value;
+            var display1 = document.getElementById("display1");
+
+            var result = [];
+            var hanChars = hanString.split('');
+            console.log(hanChars);
+
+            for (var i=0; i<hanChars.length; i=i+1) {
+                var disChar = Hangul.disassemble(hanChars[i]);
+                result.push(disChar);
+            }
+
+            display1.textContent = result;
+            console.log(result);
+            
+        };
+    </script>
+</head>
+<body>
+    <input type="text" id="hangul_string" size="30"/>
+    <button onclick="splitHangul()"> split </button>
+    <div id="display1"></div>
+    <div id="display2"></div>
+</body>
+</html>
+
