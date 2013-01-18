@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="utf-8" />
+    <title> [PoemPoem] proto 02 </title>
+    <link rel="stylesheet" href="css/poempoem.css" />
+    <script src="js/hangul.js"></script>
+    <script src="js/thunder.js"></script>
+    <script src="js/poempoem.js"></script>
+    <script type="text/javascript">
+    </script>
+</head>
+<body>
+    <header class="title">
+        <h1> PoemPoem </h1>
+    </header>
+
+    <section class="sketchbook">
+        <canvas></canvas>
+    </section>
+
+    <section class="notebook">
+        <input type="text" id="poem" size="30"/>
+        <button id="sing" onclick="PoemPoem.play('poem')">sing a poem</button>
+    </section>
+</body>
+</html>
