@@ -57,7 +57,13 @@ var PoemPoem = (function() {
             'ㅔ':10, 'ㅖ':5,  
             'ㅘ':-20, 'ㅙ':15, 'ㅚ':-20,
             'ㅝ':15, 'ㅞ':-20, 'ㅟ':-20,
-            'ㅡ':0, 'ㅢ':0, 'ㅣ':0,
+            'ㅡ':0, 'ㅢ':0, 'ㅣ':0, '':15,
+        },
+
+        BRUSH_COLOR_OPT = {
+            '':0, 'ㄱ':3, 'ㄲ':5, 'ㄳ':9, 'ㄴ':3, 'ㄵ':9, 'ㄶ':9, 'ㄷ':3, 'ㄹ':3,
+            'ㄺ':5, 'ㄻ':5, 'ㄼ':5, 'ㄽ':9, 'ㄾ':9, 'ㄿ':9, 'ㅀ':9, 'ㅁ':3,
+            'ㅂ':3, 'ㅄ':9, 'ㅅ':3, 'ㅆ':5, 'ㅇ':1, 'ㅈ':3, 'ㅊ':3, 'ㅋ':3, 'ㅌ':3, 'ㅍ':3, 'ㅎ':3 
         },
 
         doc = document;
@@ -108,10 +114,10 @@ var PoemPoem = (function() {
         for (var i=0; i<aPoemChars.length; i=i+1) {
             var disassembled = Hangul.disassemble(aPoemChars[i]);
             var cho = disassembled[0];
-            var jung = disassembled[1];
-            var jong = disassembled[2] ? disassembled[2] : null;
+            var jung = disassembled[1] ? disassembled[1] : '';
+            var jong = disassembled[2] ? disassembled[2] : '';
 
-            painter.addBrush(CHO_COLOR[cho], BRUSH_ENERGY[jung]);
+            painter.addBrush(CHO_COLOR[cho], BRUSH_ENERGY[jung], BRUSH_COLOR_OPT[jong]);
         }
         painter.loop();
     },

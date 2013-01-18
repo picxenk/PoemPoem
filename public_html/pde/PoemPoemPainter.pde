@@ -27,18 +27,21 @@ void clean() {
     background(bgColor);
 }
 
-void addBrush(String colorString, float energy) {
-    brushes.add(new Brush(colorString, energy));
+void addBrush(String colorString, float energy, int cOpt) {
+    brushes.add(new Brush(colorString, energy, cOpt));
 }
 
 class Brush {
     float x, y;
     float brushWidth, brushDynamics;
     color c;
+    int colorOpt;
 
-    Brush (String colorString, float energy) {
+    Brush (String colorString, float energy, int cOpt) {
         setRandomPosition();
+        colorOpt = cOpt;
         setColor(colorString);
+
         if (energy >= 0) {
             brushDynamics = energy;
             brushWidth = random(30, 70);
@@ -61,8 +64,12 @@ class Brush {
         }
     }
 
-    void setColor(String colorString) {
-        c = color(unhex(colorString));
+    void setColor(String colorString) { // FIXME
+        color optColor = color(random(20)*colorOpt, random(20)*colorOpt, random(20)*colorOpt);
+        c = color(unhex(colorString)) + optColor;
+        //c = color(unhex(colorString));
+        //println(optColor);
+        //println(c);
     }
 
 
