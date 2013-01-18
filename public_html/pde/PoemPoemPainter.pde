@@ -27,24 +27,30 @@ void clean() {
     background(bgColor);
 }
 
-void addBrush(String colorString) {
-    brushes.add(new Brush(colorString));
+void addBrush(String colorString, float energy) {
+    brushes.add(new Brush(colorString, energy));
 }
 
 class Brush {
     float x, y;
-    float brushWidth;
+    float brushWidth, brushDynamics;
     color c;
 
-    Brush (String colorString) {
+    Brush (String colorString, float energy) {
         setRandomPosition();
         setColor(colorString);
-        brushWidth = random(40, 90);
+        if (energy >= 0) {
+            brushDynamics = energy;
+            brushWidth = random(30, 70);
+        } else {
+            brushDynamics = random(15);
+            brushWidth = abs(energy) + random(-5, 10);
+        }
     }
 
     void paint() {
-        x = x + random(-15, 15);
-        y = y + random(-15, 15);
+        x = x + random(brushDynamics*-1, brushDynamics);
+        y = y + random(brushDynamics*-1, brushDynamics);
 
         if (brushWidth > 0) {
             fill(c);

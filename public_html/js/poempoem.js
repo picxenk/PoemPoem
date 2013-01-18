@@ -50,6 +50,16 @@ var PoemPoem = (function() {
             '!':'ffdddddd', ',':'ffdddddd', '.':'ffdddddd', ' ':'ffdddddd',
         },
 
+        BRUSH_ENERGY = {
+            'ㅕ':5, 'ㅓ':10, 'ㅏ':20, 'ㅑ':30, // dynamics
+            'ㅠ':-50, 'ㅜ':-30, 'ㅗ':-10, 'ㅛ':-5, // brush width
+            'ㅐ':15, 'ㅒ':25, 
+            'ㅔ':10, 'ㅖ':5,  
+            'ㅘ':-20, 'ㅙ':15, 'ㅚ':-20,
+            'ㅝ':15, 'ㅞ':-20, 'ㅟ':-20,
+            'ㅡ':0, 'ㅢ':0, 'ㅣ':0,
+        },
+
         doc = document;
         
     return { // METHODS START
@@ -101,7 +111,7 @@ var PoemPoem = (function() {
             var jung = disassembled[1];
             var jong = disassembled[2] ? disassembled[2] : null;
 
-            painter.addBrush(CHO_COLOR[cho]);
+            painter.addBrush(CHO_COLOR[cho], BRUSH_ENERGY[jung]);
         }
         painter.loop();
     },
