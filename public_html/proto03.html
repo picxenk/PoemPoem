@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="utf-8" />
+    <title> [PoemPoem] proto 03 </title>
+    <link href='http://fonts.googleapis.com/css?family=Sacramento' rel='stylesheet' type='text/css' />
+    <link rel="stylesheet" href="css/poempoem.css" />
+    <script src="js/hangul.js"></script>
+    <script src="js/thunder.js"></script>
+    <script src="js/processing-1.4.1.min.js"></script>
+    <script src="js/poempoem.js"></script>
+    <script type="text/javascript">
+    </script>
+</head>
+<body>
+    <div class="title">
+        <h1> PoemPoem </h1>
+    </div>
+
+    <canvas id="sketch" data-processing-sources="pde/PoemPoemPainter.pde"></canvas>
+
+    <div class="notebook">
+        <input type="text" id="poem" size="50"/>
+        <button id="sing" onclick="PoemPoem.play('poem')">sing a poem</button>
+    </div>
+</body>
+</html>
+
